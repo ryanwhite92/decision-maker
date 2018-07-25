@@ -3,7 +3,7 @@
   <head>
     <title>dSide</title>
 
-    <meta name="viewport" ontent="width=devicewidth">
+    <meta name="viewport" content="width=devicewidth">
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
@@ -28,8 +28,8 @@
         <section>
           <h1>What would you like to dSide?</h1>
           <form method="POST" action="/">
-            <label>Title</label>
-            <input type="text">
+            <label name="title">Title</label>
+            <input type="text" name="title">
 
             <!-- Options -->
             <label>Option 1</label>
@@ -40,6 +40,9 @@
             <input type="text">
             <label>Option 4</label>
             <input type="text">
+
+            <label name="email">Email</label>
+            <input type="email" name="email">
 
             <button type="submit">Submit</button>
           </form>

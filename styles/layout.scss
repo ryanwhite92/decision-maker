@@ -1,7 +1,40 @@
-body {
-  background-color: #EEE;
+$logo-font: Orbitron, sans-serif;
+$text-font: PT Sans Narrow, sans-serif;
+$primary-color: #162955;
+$logo-border-color: #D6DBE5;
+$secondary-color: #7887AB;
+$tertiary-color: #061539;
+$hover-color: #4F628E;
 
-  h1 {
-    color: #244751;
-  }
+
+body {
+  background-color: $secondary-color;
+  font-family: $text-font;
+  color: $tertiary-color;
+}
+
+.nav-bar {
+  background-color: $tertiary-color;
+  font-family: $logo-font;
+  color: $logo-border-color;
+  position: fixed;
+  top: 0;
+  height: 5em;
+  width: 100%;
+  border-bottom-style: solid;
+  border-bottom-color: $logo-border-color;
+  border-bottom-width: 3px;
+  z-index: 5;
+}
+
+.header {
+  padding-left: 1em;
+  position: relative;
+  top: 0.1em;
+}
+
+.container {
+  border-style: solid;
+  border-color: $secondary-color;
+  border-width: 3px;
 }

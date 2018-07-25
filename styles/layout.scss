@@ -24,6 +24,7 @@ body {
   border-bottom-style: solid;
   border-bottom-color: $logo-border-color;
   border-bottom-width: 3px;
+  z-index: 5;
 }
 
 .header {

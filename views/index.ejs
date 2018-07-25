@@ -3,12 +3,11 @@
   <head>
     <title>dSide</title>
 
-    <meta name="viewport" content="width=devicewidth">
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|PT+Sans+Narrow:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -18,16 +17,14 @@
   <body>
     <!-- Nav Bar -->
     <nav class="nav-bar">
-    <nav id="nav-bar">
       <h1 class="header">dSide</h1>
     </nav>
 
     <main>
       <div class="container">
-
         <section>
-          <h1>What would you like to dSide?</h1>
-          <form class="form-control" method="POST" action="/">
+          <h1 class="query">What would you like to dSide?</h1>
+          <form method="POST" action="/">
             <div class="form-group">
               <label name="title">Title</label>
               <input type="text" name="title">

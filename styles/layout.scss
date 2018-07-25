@@ -1,6 +1,6 @@
 $logo-font: Orbitron, sans-serif;
 $text-font: PT Sans Narrow, sans-serif;
-$primary-color: #162955;
+$primary-color: #2D4471;
 $logo-border-color: #D6DBE5;
 $secondary-color: #7887AB;
 $tertiary-color: #061539;
@@ -8,9 +8,10 @@ $hover-color: #4F628E;
 
 
 body {
-  background-color: $secondary-color;
+  background-color: $primary-color;
   font-family: $text-font;
   color: $tertiary-color;
+  height: 100vh;
 }
 
 .nav-bar {
@@ -34,7 +35,13 @@ body {
 }
 
 .container {
+  font-family: $text-font;
   border-style: solid;
-  border-color: $secondary-color;
+  border-color: $tertiary-color;
+  background-color: $logo-border-color;
+  color: $tertiary-color;
   border-width: 3px;
+  border-radius: 9px;
+  position: relative;
+  top: 6em;
 }

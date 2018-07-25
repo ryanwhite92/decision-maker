@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|PT+Sans+Narrow:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -24,29 +25,39 @@
 
     <!-- Main page container -->
     <main>
-      <div>
+      <div class="container">
+
         <section>
           <h1>What would you like to dSide?</h1>
-          <form method="POST" action="/">
-            <label name="title">Title</label>
-            <input type="text" name="title">
+          <form class="form-control" method="POST" action="/">
+            <div class="form-group">
+              <label name="title">Title</label>
+              <input type="text" name="title">
+            </div>
 
             <!-- Options -->
-            <label>Option 1</label>
-            <input type="text">
-            <label>Option 2</label>
-            <input type="text">
-            <label>Option 3</label>
-            <input type="text">
-            <label>Option 4</label>
-            <input type="text">
+            <div class="form-group">
+              <label>Option 1</label>
+              <input type="text">
+              <label>Option 2</label>
+              <input type="text">
+              <label>Option 3</label>
+              <input type="text">
+              <label>Option 4</label>
+              <input type="text">
+            </div>
 
-            <label name="email">Email</label>
-            <input type="email" name="email">
+            <div class="form-group">
+              <label name="email">Email</label>
+              <input type="email" name="email">
+            </div>
 
-            <button type="submit">Submit</button>
+            <div class="form-group">
+              <button type="submit">Submit</button>
+            </div>
           </form>
         </section>
+
       </div>
     </main>
   </body>

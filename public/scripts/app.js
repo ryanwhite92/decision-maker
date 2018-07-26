@@ -36,6 +36,17 @@ $(document).ready(function() {
     $('<li>').addClass('ui-state-default').attr('id', '4').text(data.option4).append($sortSpan).appendTo($list);
   }
 
+<<<<<<< HEAD
+  // Gets array of options in order that the user ranked them
+  $('.rank-btn').on('click' , function(event) {
+    console.log('CLicked')
+    let rankedOptions = $('#sortable').sortable('toArray');
+    rankedOptions = rankedOptions.map(function(option) { return Number(option); });
+    let rankedPoints = rankSortOptions(rankedOptions);
+    console.log(rankedPoints);
+  });
+=======
+>>>>>>> ab7ba793e9005ed0ddb45174efbe4c5fa9335622
 
   function getPollData(table) {
     $(() => {

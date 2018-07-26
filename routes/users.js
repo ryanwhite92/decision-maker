@@ -15,13 +15,13 @@ module.exports = (knex) => {
     });
   });
 
-  router.get("/poll/results", (req, res) => {
+  router.get("/poll/:pid/results", (req, res) => {
     knex
       .select("poll.options", "poll.question", "response.ranks")
       .from("poll")
       .join("response", {"poll.url": "poll_url"})
+      .where({ "poll.url": req.params.pid })
       .then((results) => {
-        console.log(results);
         const options = results[0].options;
         const question = results[0].question;
         const rankedArray = [];

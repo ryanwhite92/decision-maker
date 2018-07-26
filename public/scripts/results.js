@@ -3,7 +3,7 @@ $(document).ready(function() {
   function createPoll() {
       $.ajax({
         method: "GET",
-        url: "/api/users/poll/results"
+        url: "/api/users" + window.location.pathname
       }).done((table) => {
           let $results = $("#results");
 

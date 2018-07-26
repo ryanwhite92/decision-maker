@@ -12,7 +12,6 @@ body {
   font-family: $text-font;
   color: $tertiary-color;
   height: 100vh;
-  text-align: center;
 }
 
 .nav-bar {
@@ -37,6 +36,7 @@ body {
 
 .container {
   font-family: $text-font;
+  text-align: center;
   border-style: solid;
   border-color: $tertiary-color;
   background-color: $logo-border-color;
@@ -45,4 +45,5 @@ body {
   border-radius: 9px;
   position: relative;
   top: 6em;
+  min-height: 20em;
 }

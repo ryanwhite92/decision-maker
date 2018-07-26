@@ -35,13 +35,37 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-// Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+knex('poll')
+  .insert({
+    email: 'hello',
+    options: '[world]',
+    question: 'Where do you want to eat?',
+    emails: '[my@emails.com]'
+  })
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
+
+// Mount all resource routes
+// app.use("/api/users", usersRoutes(knex));
+
+// app.post("/poll", (req, res) => {
+//   res.redirect("/poll");
+// });
+
+// app.post("/poll/results", (req, res) => {
+//   res.redirect("/results")
+// });
+
+// app.get("/poll/results", (req, res) => {
+//   res.render("results");
+// });
+
+// app.get("/poll", (req, res) => {
+//   res.render("poll");
+// });
+
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

@@ -52,7 +52,6 @@ module.exports = (knex) => {
 
       // Temporary redirect to index
       res.redirect('/');
->>>>>>> 9c71e446b89262c97183150ef2a614d207a29cbd
   });
 
   router.post("/poll/results", (req, res) => {

@@ -1,18 +1,45 @@
 $(document).ready(function() {
 
-    var $results = $("#results");
+  function createPoll(table) {
+    $(() => {
+      $.ajax({
+        method: "GET",
+        url: "/api/users/"
+      }).done((table) => {
 
-    document.chart = new Highcharts.Chart({
-        chart: {
-            renderTo: $results[0],
-        },
-        xAxis: {
-            categories: ['Option 1', 'Option 2', 'Option 3']
-        },
+          let $results = $("#results");
 
-        series: [{
-            data: [5, 7, 3]
-        }]
+          document.chart = new Highcharts.Chart({
+            chart: {
+              type: 'column',
+              renderTo: $results[0]
+            },
+
+            colors: ["#061539"],
+
+            title: {
+              text: table[0].question
+            },
+
+            xAxis: {
+              categories: [table[0].email, table[0].question, table[0].id]
+            },
+
+            series: [{
+              showInLegend: false,
+              data: [5, 7, 3]
+            }]
+          });
+      });
+
     });
+  }
+
+  createPoll("poll")
+
 });
+
+
+
+
 

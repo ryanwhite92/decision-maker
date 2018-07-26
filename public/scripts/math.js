@@ -28,5 +28,3 @@ function getPoints(arr) {
   }
   return scores;
 }
-
-console.log(getPoints(arr))

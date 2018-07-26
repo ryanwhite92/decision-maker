@@ -42,11 +42,11 @@ app.post("/poll", (req, res) => {
   res.redirect("/poll");
 });
 
-app.post("/poll/results", (req, res) => {
+app.post("/results", (req, res) => {
   res.redirect("/results")
 });
 
-app.get("/poll/results", (req, res) => {
+app.get("/results", (req, res) => {
   res.render("results");
 });
 

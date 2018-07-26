@@ -14,14 +14,13 @@ module.exports = (knex) => {
     });
   });
 
-  router.get("/:id/results", (req, res) => {
-  knex
-    .select("*")
-    .from("poll")
-    .join("responses", {"poll.id": "poll_id"})
-    .then((results) => {
-      res.json(results);
-    });
+  router.get("/results", (req, res) => {
+    // knex
+    //   .select("*")
+    //   .from("results")
+    //   .then((results) => {
+    //     res.json(results);
+    //   });
   });
 
   router.get("/", (req, res) => {
@@ -34,8 +33,8 @@ module.exports = (knex) => {
   });
 
   router.post("/poll", (req, res) => {
-    // knex('poll')
-    //   .insert({ req.body });
+    knex('poll')
+      .insert({});
   });
 
   router.post("/poll/results", (req, res) => {

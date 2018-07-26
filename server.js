@@ -35,37 +35,28 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-knex('poll')
-  .insert({
-    email: 'hello',
-    options: '[world]',
-    question: 'Where do you want to eat?',
-    emails: '[my@emails.com]'
-  })
-
-
 // Mount all resource routes
-// app.use("/api/users", usersRoutes(knex));
+app.use("/api/users", usersRoutes(knex));
 
-// app.post("/poll", (req, res) => {
-//   res.redirect("/poll");
-// });
+app.post("/poll", (req, res) => {
+  res.redirect("/poll");
+});
 
-// app.post("/poll/results", (req, res) => {
-//   res.redirect("/results")
-// });
+app.post("/poll/results", (req, res) => {
+  res.redirect("/results")
+});
 
-// app.get("/poll/results", (req, res) => {
-//   res.render("results");
-// });
+app.get("/poll/results", (req, res) => {
+  res.render("results");
+});
 
-// app.get("/poll", (req, res) => {
-//   res.render("poll");
-// });
+app.get("/poll", (req, res) => {
+  res.render("poll");
+});
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

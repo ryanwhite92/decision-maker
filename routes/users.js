@@ -34,8 +34,24 @@ module.exports = (knex) => {
   });
 
   router.post("/poll", (req, res) => {
-    // knex('poll')
-    //   .insert({ req.body });
+    const emails = req.body.emails.split(', ');
+    const newPoll = {
+      question: req.body.question,
+      email: req.body.email,
+      options: [req.body.option1, req.body.option2, req.body.option3, req.body.option4],
+      url: req.body.url,
+      emails: emails
+    };
+
+    knex('poll')
+      .insert(newPoll)
+      .then(rows => {
+        console.log(rows);
+      })
+      .catch(error => console.error(error));
+
+      // Temporary redirect to index
+      res.redirect('/');
   });
 
   router.post("/poll/results", (req, res) => {

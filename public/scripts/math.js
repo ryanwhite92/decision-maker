@@ -28,3 +28,5 @@ function getPoints(arr) {
   }
   return scores;
 }
+
+module.exports = { generateRandomString };

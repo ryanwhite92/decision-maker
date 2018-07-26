@@ -64,6 +64,7 @@ $(document).ready(function() {
 
   getPollData("poll")
 
+
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click', function(event) {
     let rankedOptions = $('#sortable').sortable('toArray');

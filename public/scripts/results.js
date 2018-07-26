@@ -1,12 +1,10 @@
 $(document).ready(function() {
 
-  function createPoll(table) {
-    $(() => {
+  function createPoll() {
       $.ajax({
         method: "GET",
-        url: "/api/users/"
+        url: "/api/users" + window.location.pathname
       }).done((table) => {
-
           let $results = $("#results");
 
           document.chart = new Highcharts.Chart({
@@ -18,25 +16,26 @@ $(document).ready(function() {
             colors: ["#061539"],
 
             title: {
-              text: table[0].question
+              text: table.question
             },
 
             xAxis: {
-              categories: [table[0].email, table[0].question, table[0].id]
+              categories: [table.options[0],
+                          table.options[1],
+                          table.options[2],
+                          table.options[3]]
             },
 
             series: [{
               showInLegend: false,
-              data: [5, 7, 3]
+              data: table.ranks
             }]
           });
       });
 
-    });
   }
 
-  createPoll("poll")
-
+  createPoll()
 });
 
 

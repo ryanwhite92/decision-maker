@@ -40,6 +40,7 @@ $(document).ready(function() {
 
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click' , function(event) {
+    console.log('CLicked')
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = rankSortOptions(rankedOptions);

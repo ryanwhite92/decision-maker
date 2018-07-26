@@ -26,25 +26,16 @@ $(document).ready(function() {
   function renderPoll(data) {
 
     const $poll = $('.poll-container');
-    const $title = $('<h1>').text(data.title).appendTo($poll);
-    const $list = $('<ul>').attr('id', 'sortable').appendTo($poll);
+    const $title = $('<h1>').text(data.title).prependTo($poll);
+    const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     $('<li>').addClass('ui-state-default').attr('id', '1').text(data.question).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '2').text(data.email).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '3').text(data.option3).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '4').text(data.option4).append($sortSpan).appendTo($list);
-
-    $('<button>').addClass('rank-btn').text('Submit').appendTo($poll);
   }
 
-  // Gets array of options in order that the user ranked them
-  $('.rank-btn').on('click' , function(event) {
-    let rankedOptions = $('#sortable').sortable('toArray');
-    rankedOptions = rankedOptions.map(function(option) { return Number(option); });
-    let rankedPoints = rankSortOptions(rankedOptions);
-    console.log(rankedPoints);
-  });
 
   function getPollData(table) {
     $(() => {
@@ -59,5 +50,14 @@ $(document).ready(function() {
   }
 
   getPollData("poll")
+
+  // Gets array of options in order that the user ranked them
+  $('.rank-btn').on('click', function(event) {
+    console.log('work')
+    let rankedOptions = $('#sortable').sortable('toArray');
+    rankedOptions = rankedOptions.map(function(option) { return Number(option); });
+    let rankedPoints = rankSortOptions(rankedOptions);
+    console.log(rankedPoints);
+  });
 
 });

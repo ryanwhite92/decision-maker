@@ -14,11 +14,11 @@ module.exports = (knex) => {
     });
   });
 
-  router.get("/:id/results", (req, res) => {
+  router.get("/poll/results", (req, res) => {
   knex
     .select("*")
     .from("poll")
-    .join("responses", {"poll.id": "poll_id"})
+    .join("response", {"poll.url": "poll_url"})
     .then((results) => {
       res.json(results);
     });
@@ -55,8 +55,15 @@ module.exports = (knex) => {
   });
 
   router.post("/poll/results", (req, res) => {
-    // knex('results')
-    //   .insert({ req.body })
+    const newResponse = {
+      ranks: JSON.parse(req.body.ranking),
+      poll_url: req.body.url
+    };
+
+    knex('response')
+      .insert(newResponse)
+      .then(rows => console.log(rows))
+      .catch(error => console.error(error));
   });
 
   return router;

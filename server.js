@@ -38,19 +38,11 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-app.post("/poll", (req, res) => {
-  res.redirect("/poll");
-});
-
-app.post("/results", (req, res) => {
-  res.redirect("/results")
-});
-
-app.get("/results", (req, res) => {
+app.get("/poll/:pid/results", (req, res) => {
   res.render("results");
 });
 
-app.get("/poll", (req, res) => {
+app.get("/poll/:pid", (req, res) => {
   res.render("poll");
 });
 

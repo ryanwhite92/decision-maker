@@ -1,16 +1,3 @@
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users/"
-  }).done((poll) => {
-    for(let entry in poll) {
-      console.log(poll[entry])
-      $('#question').attr("placeholder", poll[entry].question);
-      $('#email').attr("placeholder", poll[entry].email);
-    }
-  });;
-});
-
 // Temp test data
 const data = {
   title: 'My poll for stuff',
@@ -37,12 +24,13 @@ $(document).ready(function() {
   }
 
   function renderPoll(data) {
+
     const $poll = $('.poll-container');
     const $title = $('<h1>').text(data.title).appendTo($poll);
     const $list = $('<ul>').attr('id', 'sortable').appendTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
-    $('<li>').addClass('ui-state-default').attr('id', '1').text(data.option1).append($sortSpan).appendTo($list);
+    $('<li>').addClass('ui-state-default').attr('id', '1').text(data.question).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '2').text(data.option2).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '3').text(data.option3).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '4').text(data.option4).append($sortSpan).appendTo($list);
@@ -50,7 +38,7 @@ $(document).ready(function() {
     $('<button>').addClass('rank-btn').text('Submit').appendTo($poll);
   }
 
-  renderPoll(data);
+  // renderPoll(data);
 
   $('#sortable').sortable();
 
@@ -61,5 +49,23 @@ $(document).ready(function() {
     let rankedPoints = rankSortOptions(rankedOptions);
     console.log(rankedPoints);
   });
+
+  function getPollData(table) {
+    $(() => {
+      $.ajax({
+        method: "GET",
+        url: "/api/users/"
+      }).done((table) => {
+        // for(let entry in table) {
+        //   console.log(table[entry])
+        //   $('#question').attr("placeholder", table[entry].question);
+        //   $('#email').attr("placeholder", poll[entry].email);
+        //}
+        renderPoll(table[0]);
+      });;
+    });
+  }
+
+  getPollData("poll");
 
 });

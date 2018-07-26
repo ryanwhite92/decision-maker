@@ -31,16 +31,12 @@ $(document).ready(function() {
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     $('<li>').addClass('ui-state-default').attr('id', '1').text(data.question).append($sortSpan).appendTo($list);
-    $('<li>').addClass('ui-state-default').attr('id', '2').text(data.option2).append($sortSpan).appendTo($list);
+    $('<li>').addClass('ui-state-default').attr('id', '2').text(data.email).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '3').text(data.option3).append($sortSpan).appendTo($list);
     $('<li>').addClass('ui-state-default').attr('id', '4').text(data.option4).append($sortSpan).appendTo($list);
 
     $('<button>').addClass('rank-btn').text('Submit').appendTo($poll);
   }
-
-  // renderPoll(data);
-
-  $('#sortable').sortable();
 
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click' , function(event) {
@@ -56,16 +52,12 @@ $(document).ready(function() {
         method: "GET",
         url: "/api/users/"
       }).done((table) => {
-        // for(let entry in table) {
-        //   console.log(table[entry])
-        //   $('#question').attr("placeholder", table[entry].question);
-        //   $('#email').attr("placeholder", poll[entry].email);
-        //}
         renderPoll(table[0]);
+        $('#sortable').sortable();
       });;
     });
   }
 
-  getPollData("poll");
+  getPollData("poll")
 
 });

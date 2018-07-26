@@ -18,3 +18,15 @@ function generateRandomString(input) {
   }
   return rando.join('');
 }
+
+let arr = [3,2,1,4]
+
+function getPoints(arr) {
+  let scores = [];
+  for (let i = 1; i <= arr.length; i++) {
+    scores.push(arr.length - (arr.indexOf(i) + 1));
+  }
+  return scores;
+}
+
+console.log(getPoints(arr))

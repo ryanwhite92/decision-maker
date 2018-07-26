@@ -5,7 +5,22 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('poll').insert({id: 1, email: 'hello@myemail.com', question: "Where do you want to meet?", url: "sdafasgdfg"})
+        knex('poll')
+          .insert({
+            email: 'hello@myemail.com',
+            options: ['beach', 'dak', 'uvic', 'mt doug'],
+            question: "Where do you want to meet?",
+            url: "sdafasgdfg",
+            emails: ['admin@example.com', 'user@example.com', 'user@email.com']
+          }),
+        knex('poll')
+          .insert({
+            email: 'admin@myemail.com',
+            options: ['dak', 'uvic', 'beach', 'mt finlayson'],
+            question: "Where do you want to meet?",
+            url: "sdbvcxngdf",
+            emails: ['admin1@example.com', 'user1@example.com', 'user1@email.com']
+          })
       ]);
     });
 };

@@ -3,8 +3,6 @@
   <head>
     <title>dSide</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|PT+Sans+Narrow:400,700" rel="stylesheet">
@@ -29,11 +27,11 @@
           <form method="POST" action="/">
             <div class="form-group">
               <label>Title</label>
-              <input class="form-control" type="text" placeholder="Ask your question">
+              <input class="form-control" id="question" type="text" placeholder="Ask your question">
             </div>
             <div class="form-group">
               <label>Option 1</label>
-              <input class="form-control" type="text" placeholder="Create options">
+              <input class="form-control" type="text">
             </div>
             <div class="form-group">
               <label>Option 2</label>
@@ -49,7 +47,7 @@
             </div>
             <div class="form-group">
               <label name="email">Email</label>
-              <input class="form-control" type="email" name="email" placeholder="Enter your email">
+              <input class="form-control" type="email" id="email" name="email" placeholder="Enter your email">
             </div>
             <div class="form-group">
               <button type="submit">Submit</button>

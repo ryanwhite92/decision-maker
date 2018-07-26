@@ -3,9 +3,10 @@ $(() => {
     method: "GET",
     url: "/api/users/"
   }).done((poll) => {
-    for(id of poll) {
-      console.log(poll)
-      $("<div>").text(poll).appendTo($("body"));
+    for(let entry in poll) {
+      console.log(poll[entry])
+      $('#question').attr("placeholder", poll[entry].question);
+      $('#email').attr("placeholder", poll[entry].email);
     }
   });;
 });

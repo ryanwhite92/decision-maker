@@ -5,6 +5,24 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
+  router.get("/poll", (req, res) => {
+    knex
+      .select("*")
+      .from("poll")
+      .then((results) => {
+        res.json(results);
+    });
+  });
+
+  router.get("/:id/results", (req, res) => {
+  knex
+    .select("*")
+    .from("poll")
+    .then((results) => {
+      res.json(results);
+    });
+  });
+
   router.get("/", (req, res) => {
     knex
       .select("*")
@@ -22,24 +40,6 @@ module.exports = (knex) => {
   router.post("/poll/results", (req, res) => {
     // knex('results')
     //   .insert({ req.body })
-  });
-
-  router.get("/poll", (req, res) => {
-    knex
-      .select("*")
-      .from("poll")
-      .then((results) => {
-        res.json(results);
-      });
-  });
-
-  router.get("/results", (req, res) => {
-  knex
-    .select("*")
-    .from("poll")
-    .then((results) => {
-      res.json(results);
-    });
   });
 
   return router;

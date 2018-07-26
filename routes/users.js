@@ -18,6 +18,7 @@ module.exports = (knex) => {
   knex
     .select("*")
     .from("poll")
+    .join("responses", {"poll.id": "poll_id"})
     .then((results) => {
       res.json(results);
     });

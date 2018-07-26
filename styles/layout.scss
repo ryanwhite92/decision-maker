@@ -9,7 +9,7 @@ $hover-color: #4F628E;
 body {
   background-image: url(https://newevolutiondesigns.com/images/freebies/red-wallpaper-1.jpg);
   background-repeat: no-repeat;;
-  background-color: $primary-color;
+  background-color: black;
   font-family: $text-font;
   color: $tertiary-color;
   height: 100vh;
@@ -48,7 +48,7 @@ body {
   position: relative;
   top: 6em;
   min-height: 20em;
-  width: 50%;
+  width: 80%;
 }
 
 #sortable {

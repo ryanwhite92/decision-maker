@@ -23,7 +23,8 @@ $(document).ready(function() {
 
   function renderPoll(data) {
     const $poll = $('.poll-container');
-    const $list = $('#sortable');
+    const $title = $('<h1>').text(data.title).appendTo($poll);
+    const $list = $('<ul>').attr('id', 'sortable').appendTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     $('<li>').addClass('ui-state-default').text(data.option1).append($sortSpan).appendTo($list);
@@ -34,7 +35,7 @@ $(document).ready(function() {
 
   renderPoll(data);
 
-  $('#sortable').sortable();
+  $('#sortable').sortable({});
   $('#sortable').disableSelection();
 
 });

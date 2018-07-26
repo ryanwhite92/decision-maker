@@ -16,13 +16,31 @@ module.exports = (knex) => {
   });
 
   router.get("/poll/results", (req, res) => {
-  knex
-    .select("*")
-    .from("poll")
-    .join("response", {"poll.url": "poll_url"})
-    .then((results) => {
-      res.json(results);
-    });
+    knex
+      .select("poll.options", "poll.question", "response.ranks")
+      .from("poll")
+      .join("response", {"poll.url": "poll_url"})
+      .then((results) => {
+        console.log(results);
+        const options = results[0].options;
+        const question = results[0].question;
+        const rankedArray = [];
+
+        // Get ranks array from each response in db
+        results.forEach((result) => {
+          rankedArray.push(result.ranks);
+        });
+
+        // Sum ranks by index in rankedArray
+        let ranks = rankedArray.reduce((accumulator, current) => {
+          current.forEach((num, i) => {
+            accumulator[i] = (accumulator[i] || 0) + num;
+          });
+          return accumulator;
+        }, []);
+
+        res.json({ options, question, ranks });
+      });
   });
 
   router.get("/", (req, res) => {

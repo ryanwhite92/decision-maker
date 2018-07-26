@@ -73,21 +73,18 @@ module.exports = (knex) => {
   });
 
   router.post("/poll/:pid/results", (req, res) => {
-    console.log(req.body)
-
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
       poll_url: req.params.pid
     };
-
-
 
     knex('response')
       .insert(newResponse)
       .then(rows => console.log(rows))
       .catch(error => console.error(error));
 
-    res.redirect(`/poll/${req.params.pid}/results`);
+    const redirect = `/poll/${req.params.pid}/results`;
+    res.json({ redirect });
   });
 
   return router;

@@ -3,6 +3,7 @@
 const express = require('express');
 const router  = express.Router();
 const math = require('../public/scripts/math');
+const mailgun = require('./util/mailgun.js');
 
 module.exports = (knex) => {
 
@@ -69,7 +70,10 @@ module.exports = (knex) => {
         console.log(rows);
       })
       .catch(error => console.error(error));
-      res.redirect(`/poll/${pollUrl}`);
+
+    mailgun.sendEmail(newPoll);
+
+    res.redirect(`/poll/${pollUrl}`);
   });
 
   router.post("/poll/:pid/results", (req, res) => {

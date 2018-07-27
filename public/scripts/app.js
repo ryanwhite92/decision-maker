@@ -15,7 +15,7 @@ $(document).ready(function() {
     const ranked = [];
     arr = arr.reverse();
 
-    for (let i = 1; i <= arr.length; i++) {
+    for (let i = 0; i <= arr.length; i++) {
       let idx = arr.indexOf(i);
       ranked.push(idx);
     }

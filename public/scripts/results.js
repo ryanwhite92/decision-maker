@@ -24,6 +24,10 @@ $(document).ready(function() {
             colors: ["#061539"],
 
             title: {
+              text: "Here's the current results for:"
+            },
+
+            subtitle: {
               text: table.question
             },
 

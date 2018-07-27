@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  //$('.err').hide(0)
+
   // Sorts array of options and assigns points mased on position in array
 
   function rankSortOptions(arr) {
@@ -92,33 +94,42 @@ $(document).ready(function() {
     getRanks(rankedPoints)
   });
 
+  
+
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "")
-        alert("Please enter your email");
+        $('#missing-email').slideDown();
         event.preventDefault();
     });
     $(":input#question.form-control").each(function() {
       if($('input#question.form-control').val() === "")
-        alert("Please enter a question");
+        $('#missing-question').slideDown();
         event.preventDefault();
     });
     $(":input#option1.form-control").each(function() {
       if($('input#option1.form-control').val() === "")
-        alert("Please enter the first option");
+        $('#missing-option1').slideDown();
         event.preventDefault();
     });
     $(":input#option2.form-control").each(function() {
       if($('input#option2.form-control').val() === "")
-        alert("Please enter a second option");
+        $('#missing-option2').slideDown();
         event.preventDefault();
     });
     $(":input#emails.form-control").each(function() {
       if($('input#emails.form-control').val() === "")
-        alert("Please enter the emails of the people you would like to ask");
+        $('#missing-recipients').slideDown();
         event.preventDefault();
     });
+    function f() {
+      $('.err').slideUp();
+    }
+    setTimeout(f, 5000)
+
   });
+
+
 
 });
 

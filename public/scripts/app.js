@@ -76,8 +76,9 @@ $(document).ready(function() {
         url: "/api/users" + window.location.pathname + "/results",
         data: data,
       })
-      .done(() => {
+      .done((res) => {
         console.log('Success: posted to ' + window.location.pathname + "/results");
+        window.location.pathname = res.redirect;
       });
     });
   };

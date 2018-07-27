@@ -11,6 +11,7 @@
 $(document).ready(function() {
 
   // Sorts array of options and assigns points mased on position in array
+
   function rankSortOptions(arr) {
     const ranked = [];
     arr = arr.reverse();
@@ -18,9 +19,19 @@ $(document).ready(function() {
     for (let i = 0; i <= arr.length; i++) {
       let idx = arr.indexOf(i);
       ranked.push(idx);
-    }
 
-    return ranked;
+    }
+    
+    return scores;
+  }
+
+  function getPoints(arr) {
+    let scores = [];
+    for (let i = 0; i < arr.length; i++) {
+      scores.push(arr.length - (arr.indexOf(i)) - 1);
+
+    }
+    return scores;
   }
 
   let count = 2;
@@ -53,7 +64,7 @@ $(document).ready(function() {
     event.stopPropagation();
     renderNewOption();
   });
-  
+
 
 
   function getPollData(table) {
@@ -78,7 +89,7 @@ $(document).ready(function() {
       })
       .done((res) => {
         console.log('Success: posted to ' + window.location.pathname + "/results");
-        window.location.pathname = res.redirect;
+        // window.location.pathname = res.redirect;
       });
     });
   };
@@ -89,7 +100,7 @@ $(document).ready(function() {
   $('.rank-btn').on('click', function(event) {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
-    let rankedPoints = rankSortOptions(rankedOptions);
+    let rankedPoints = getPoints(rankedOptions);
     console.log(rankedPoints);
     getRanks(rankedPoints)
   });

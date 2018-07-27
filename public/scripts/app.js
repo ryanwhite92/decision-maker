@@ -30,8 +30,8 @@ $(document).ready(function() {
     console.log(data)
 
     const $poll = $('.poll-container');
-    const $title = $('<h1>').text(data.title).prependTo($poll);
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
+    const $title = $('<h1>').text(data.question).prependTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     for (let i = 0; i < data.options.length; i++) {
@@ -43,9 +43,8 @@ $(document).ready(function() {
     count++;
     const $addoption = $(".add-option-div");
     let $input = $('<input>').addClass("form-control").attr('name', 'option' + count).attr('type', 'text');
-    const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
-    $('<div>').addClass("form-group").append($input).append($sortSpan).insertBefore($addoption);
+    $('<div>').addClass("form-group").append($input).insertBefore($addoption);
     return count;
   }
 

@@ -8,7 +8,7 @@ $hover-color: #4F628E;
 
 
 body {
-  background: url(../images/blur-ocean.jpg) no-repeat center center fixed;
+  background: url(../images/sunrise.jpg) no-repeat center center fixed;
   background-size: cover;
   font-family: $text-font;
   color: $tertiary-color;
@@ -93,21 +93,21 @@ body {
 }
 
 #sortable {
+  -webkit-padding-start: 0px;
   list-style: none;
   margin: 0.5em auto;
-  padding: 0 auto;
   font-size: 2em;
   width: 90%;
 
   li {
-    border: 1px dashed #eee;
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     margin: 10px auto;
     width: 75%;
   }
 
   li:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
   }
 }
 

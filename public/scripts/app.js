@@ -23,6 +23,21 @@ $(document).ready(function() {
     return scores;
   }
 
+  function randomQuestion() {
+    const questionList = ["Where do you want to go for dinner on Wednesday?", "Do you like pizza?", "What movie should we watch?", "What is the flight velocity of an unladen swallow?"];
+    const optionList1 = ["Somewhere cheap", "Yes", "Return of the Jedi", "What do you mean? An African or European swallow?"];
+    const optionList2 = ["Somewhere delicious", "No; I'm not human", "The Last Crusade", "Huh? I.. I don't know that... AAARRRRRGGH!"];
+
+    let rando = Math.floor(Math.random() * 3);
+    let arr = [questionList[rando], optionList1[rando], optionList2[rando]];
+
+    $('#question').attr("placeholder", arr[0]);
+    $('#option1').attr("placeholder", arr[1]);
+    $('#option2').attr("placeholder", arr[2]);
+  }
+
+  randomQuestion();
+
   let count = 2;
 
   function renderPoll(data) {
@@ -131,8 +146,6 @@ $(document).ready(function() {
     setTimeout(f, 5000)
 
   });
-
-
 
 });
 

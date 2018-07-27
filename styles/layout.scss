@@ -8,25 +8,21 @@ $hover-color: #4F628E;
 
 
 body {
-  background-image: url(./1511.jpg);
-  background-size: 100%;
-  background-repeat: no-repeat;;
+  background: url(./images/blur-ocean.jpg) no-repeat center center fixed;
+  background-size: cover;
   font-family: $text-font;
   color: $tertiary-color;
   height: 100vh;
 }
 
 .nav-bar {
-  background-color: $tertiary-color;
   font-family: $logo-font;
-  color: $logo-border-color;
+  font-size: 2em;
+  color: #eee;
   position: fixed;
   top: 0;
-  height: 5em;
+  height: 3.5em;
   width: 100%;
-  border-bottom-style: solid;
-  border-bottom-color: $logo-border-color;
-  border-bottom-width: 3px;
   z-index: 5;
 }
 
@@ -38,16 +34,14 @@ body {
 
 .container {
   font-family: $text-font;
+  font-size: 1.5em;
   text-align: center;
-  border-style: solid;
-  border-color: $tertiary-color;
-  background-color: $logo-border-color;
-  color: $tertiary-color;
-  border-width: 3px;
-  border-radius: 9px;
+  color: #eee;
   position: relative;
-  top: 6em;
+  top: 7em;
   min-height: 20em;
+  min-width: 20em;
+  width: 80%;
 }
 
 .results-container {
@@ -58,13 +52,13 @@ body {
   margin-top: 1em;
   margin-bottom: 1em;
   min-height: 400px;
+  width: 90%;
 }
 
 #no-results {
   align: middle;
   width: 100%;
   position: absolute;
-  padding: 125px;
   z-index: 0;
 }
 
@@ -74,8 +68,18 @@ body {
   z-index: 1;
 }
 
+.form-container {
+  margin: 1em auto;
+  width: 90%;
+
+  .add-option-div {
+    margin: 1em;
+  }
+}
+
 .poll-container {
-  margin: 1em;
+  margin: 1em auto;
+  width: 90%;
 
   h1 {
     margin: 0.5em;
@@ -84,12 +88,13 @@ body {
 
 #sortable {
   list-style: none;
-  margin: 0.5em;
-  padding: 0;
+  margin: 0.5em auto;
+  padding: 0 auto;
   font-size: 2em;
+  width: 90%;
 
   li {
-    border: 1px dashed black;
+    border: 1px dashed #eee;
     border-radius: 5px;
     margin: 10px auto;
     width: 75%;

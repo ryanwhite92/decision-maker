@@ -7,9 +7,9 @@ $tertiary-color: #061539;
 $hover-color: #4F628E;
 
 body {
-  background-image: url(https://newevolutiondesigns.com/images/freebies/red-wallpaper-1.jpg);
+  background-image: url(./1511.jpg);
+  background-size: 100%;
   background-repeat: no-repeat;;
-  background-color: black;
   font-family: $text-font;
   color: $tertiary-color;
   height: 100vh;
@@ -57,10 +57,21 @@ body {
   margin: auto;
   margin-top: 1em;
   margin-bottom: 1em;
+  min-height: 400px;
+}
+
+#no-results {
+  align: middle;
+  width: 100%;
+  position: absolute;
+  padding: 125px;
+  z-index: 0;
 }
 
 #results {
+  border-width: 0px;
   width: 100%;
+  z-index: 1;
 }
 
 #sortable {

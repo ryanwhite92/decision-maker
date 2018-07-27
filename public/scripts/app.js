@@ -1,13 +1,3 @@
-// Temp test data
-// const data = {
-//   title: 'My poll for stuff',
-//   option1: 'option1',
-//   option2: 'option2',
-//   option3: 'option3',
-//   option4: 'option4',
-//   email: 'admin@example.com'
-// };
-
 $(document).ready(function() {
 
   // Sorts array of options and assigns points mased on position in array
@@ -19,9 +9,8 @@ $(document).ready(function() {
     for (let i = 0; i <= arr.length; i++) {
       let idx = arr.indexOf(i);
       ranked.push(idx);
-
     }
-    
+
     return scores;
   }
 
@@ -29,8 +18,8 @@ $(document).ready(function() {
     let scores = [];
     for (let i = 0; i < arr.length; i++) {
       scores.push(arr.length - (arr.indexOf(i)) - 1);
-
     }
+
     return scores;
   }
 

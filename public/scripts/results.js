@@ -5,7 +5,15 @@ $(document).ready(function() {
         method: "GET",
         url: "/api/users" + window.location.pathname
       }).done((table) => {
-          let $results = $("#results");
+          let $results = $(".results");
+          let optionArr = [];
+          for (let i = 0; i < table.options.length; i++) {
+            optionArr.push(table.options[i])
+          }
+          console.log(table.ranks)
+          if (table.ranks.length < 1) {
+            table.ranks = [1,1]
+          }
 
           document.chart = new Highcharts.Chart({
             chart: {
@@ -20,10 +28,7 @@ $(document).ready(function() {
             },
 
             xAxis: {
-              categories: [table.options[0],
-                          table.options[1],
-                          table.options[2],
-                          table.options[3]]
+              categories: optionArr
             },
 
             series: [{
@@ -32,7 +37,6 @@ $(document).ready(function() {
             }]
           });
       });
-
   }
 
   createPoll()

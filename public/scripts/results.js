@@ -10,7 +10,7 @@ $(document).ready(function() {
           for (let i = 0; i < table.options.length; i++) {
             optionArr.push(table.options[i])
           }
-          console.log(table.ranks)
+
           if (table.ranks.length < 1) {
             table.ranks = [1,1]
           }
@@ -33,6 +33,19 @@ $(document).ready(function() {
 
             xAxis: {
               categories: optionArr
+            },
+
+            yAxis: {
+
+              title: {
+
+                text: "Votes"
+              },
+
+              labels: {
+                enabled: false
+              }
+
             },
 
             series: [{

@@ -54,12 +54,20 @@ module.exports = (knex) => {
   });
 
   router.post("/poll", (req, res) => {
+    let optionArr = [];
+    let val = Object.values(req.body);
+    let key = Object.keys(req.body)
+    for (let i = 0; i < val.length; i++) {
+      if (key[i].includes("option")) {
+        optionArr.push(val[i]);
+      }
+    }
     const pollUrl = math.generateRandomString(10);
     const emails = req.body.emails.split(', ');
     const newPoll = {
       question: req.body.question,
       email: req.body.email,
-      options: [req.body.option1, req.body.option2, req.body.option3, req.body.option4],
+      options: optionArr,
       url: pollUrl,
       emails: emails
     };
@@ -80,7 +88,8 @@ module.exports = (knex) => {
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
       poll_url: req.params.pid
-    };
+  };
+
 
     knex('response')
       .insert(newResponse)

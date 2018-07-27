@@ -38,33 +38,27 @@
     <main>
       <div class="container">
         <section>
-          <h3>What would you like to dSide?</h3>
           <form method="POST" action="/api/users/poll">
             <div class="form-group">
-              <label name="question">Title</label>
-              <input class="form-control" id="question" name="question" type="text" placeholder="Ask your question">
+              <label name="email">Enter your email address</label>
+              <input class="form-control" type="email" id="email" name="email" placeholder="example@example.com">
             </div>
             <div class="form-group">
-              <label name="email">Enter your email</label>
-              <input class="form-control" type="email" id="email" name="email" placeholder="Enter your email">
+              <label name="question">Ask your question</label>
+              <input class="form-control" id="question" name="question" type="text" placeholder="Do you like pizza?">
             </div>
             <div class="form-group">
-              <label name="option1">Option 1</label>
-              <input class="form-control" name="option1" type="text">
+              <label name="option1">Enter your options</label>
+              <input class="form-control" name="option1" type="text" placeholder="Yes.">
             </div>
             <div class="form-group">
-              <label name="option2">Option 2</label>
-              <input class="form-control" name="option2" type="text">
+              <label name="option2"></label>
+              <input class="form-control" name="option2" type="text" placeholder="I am a terrible person.">
             </div>
-            <div class="form-group">
-              <label name="option3">Option 3</label>
-              <input class="form-control" name="option3" type="text">
+            <div class ="add-option-div">
+              <button type="button" class="add-option">Add another option</button>
             </div>
-            <div class="form-group">
-              <label name="option4">Option 4</label>
-              <input class="form-control" name="option4" type="text">
-            </div>
-            <div class="form-group">
+            <div>
               <label name="emails">Enter email of who to send your question to:</label>
               <input class="form-control" name="emails" type="text">
             </div>

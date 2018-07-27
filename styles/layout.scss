@@ -6,6 +6,7 @@ $secondary-color: #7887AB;
 $tertiary-color: #061539;
 $hover-color: #4F628E;
 
+
 body {
   background-image: url(./1511.jpg);
   background-size: 100%;
@@ -13,7 +14,6 @@ body {
   font-family: $text-font;
   color: $tertiary-color;
   height: 100vh;
-
 }
 
 .nav-bar {
@@ -74,8 +74,30 @@ body {
   z-index: 1;
 }
 
+.poll-container {
+  margin: 1em;
+
+  h1 {
+    margin: 0.5em;
+  }
+}
+
 #sortable {
   list-style: none;
+  margin: 0.5em;
   padding: 0;
   font-size: 2em;
+
+  li {
+    border: 1px dashed black;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: 75%;
+  }
+
+  li:hover {
+    background-color: white;
+  }
 }
+
+

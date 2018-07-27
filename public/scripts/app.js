@@ -6,7 +6,7 @@ $(document).ready(function() {
     const ranked = [];
     arr = arr.reverse();
 
-    for (let i = 0; i <= arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       let idx = arr.indexOf(i);
       ranked.push(idx);
     }
@@ -26,9 +26,6 @@ $(document).ready(function() {
   let count = 2;
 
   function renderPoll(data) {
-
-    // console.log(data)
-
     const $poll = $('.poll-container');
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
     const $title = $('<h1>').text(data.question).prependTo($poll);
@@ -76,7 +73,7 @@ $(document).ready(function() {
       })
       .done((res) => {
         console.log('Success: posted to ' + window.location.pathname + "/results");
-        // window.location.pathname = res.redirect;
+        window.location.pathname = res.redirect;
       });
     });
   };
@@ -92,7 +89,7 @@ $(document).ready(function() {
     getRanks(rankedPoints)
   });
 
-  
+
 
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {

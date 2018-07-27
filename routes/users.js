@@ -79,17 +79,15 @@ module.exports = (knex) => {
         mailgun.sendInvites(newPoll);
       })
       .catch(error => console.error(error));
-      
 
-    res.redirect(`/poll/${pollUrl}`);
+    res.redirect(`/poll/${pollUrl}/results`);
   });
 
   router.post("/poll/:pid/results", (req, res) => {
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
       poll_url: req.params.pid
-  };
-
+    };
 
     knex('response')
       .insert(newResponse)
@@ -99,10 +97,7 @@ module.exports = (knex) => {
     knex('poll')
       .select('email', 'question', 'url')
       .where({ 'url': req.params.pid })
-      .then((result) => {
-        console.log(result);
-        mailgun.sendEmail(result[0]);
-      })
+      .then((result) => { mailgun.sendEmail(result[0]) })
       .catch((error) => console.err(error));
 
     const redirect = `/poll/${req.params.pid}/results`;

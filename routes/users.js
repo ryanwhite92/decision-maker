@@ -76,10 +76,10 @@ module.exports = (knex) => {
       .insert(newPoll)
       .then(rows => {
         console.log(rows);
+        mailgun.sendInvites(newPoll);
       })
       .catch(error => console.error(error));
-
-    mailgun.sendEmail(newPoll);
+      
 
     res.redirect(`/poll/${pollUrl}`);
   });

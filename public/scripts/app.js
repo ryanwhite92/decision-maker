@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   function renderPoll(data) {
 
-    console.log(data)
+    // console.log(data)
 
     const $poll = $('.poll-container');
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
@@ -42,7 +42,8 @@ $(document).ready(function() {
   function renderNewOption() {
     count++;
     const $addoption = $(".add-option-div");
-    let $input = $('<input>').addClass("form-control").attr('name', 'option' + count).attr('type', 'text');
+    let $input = $('<input>').addClass("form-control").attr('id', 'option' + count).attr('name', 'option' + count).attr('type', 'text');
+    const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     $('<div>').addClass("form-group").append($input).insertBefore($addoption);
     return count;
@@ -52,8 +53,6 @@ $(document).ready(function() {
     event.stopPropagation();
     renderNewOption();
   });
-
-
 
   function getPollData(table) {
     $(() => {
@@ -92,6 +91,35 @@ $(document).ready(function() {
     console.log(rankedPoints);
     getRanks(rankedPoints)
   });
+
+  $('.poll-submit').on('click', function(event) {
+    $(":input#email.form-control").each(function() {
+      if($('input#email.form-control').val() === "")
+        alert("Please enter your email");
+        event.preventDefault();
+    });
+    $(":input#question.form-control").each(function() {
+      if($('input#question.form-control').val() === "")
+        alert("Please enter a question");
+        event.preventDefault();
+    });
+    $(":input#option1.form-control").each(function() {
+      if($('input#option1.form-control').val() === "")
+        alert("Please enter the first option");
+        event.preventDefault();
+    });
+    $(":input#option2.form-control").each(function() {
+      if($('input#option2.form-control').val() === "")
+        alert("Please enter a second option");
+        event.preventDefault();
+    });
+    $(":input#emails.form-control").each(function() {
+      if($('input#emails.form-control').val() === "")
+        alert("Please enter the emails of the people you would like to ask");
+        event.preventDefault();
+    });
+  });
+
 });
 
 

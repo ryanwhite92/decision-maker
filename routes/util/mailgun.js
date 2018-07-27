@@ -17,5 +17,23 @@ module.exports = {
       if (err) return console.error(err);
       console.log(mailgunSetup);
     });
+  },
+
+    sendInvites: function(data) {
+    const url = `http://localhost:8080/poll/${data.url}`
+    for (let i = 0; i < data.emails.length; i++) {
+      let mailgunSetup = {
+        from: 'admin@dside.com',
+        to: data.emails[i],
+        subject: `dSide - ${data.question}`,
+        text: `You've been invited to answer the following:\n${data.question}\nClick here to submit your answer:\n${url}`
+      };
+
+      mailgun.messages().send(mailgunSetup, (err, body) => {
+        if (err) return console.error(err);
+        console.log(mailgunSetup);
+      });
+    }
   }
+
 };

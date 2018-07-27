@@ -30,8 +30,8 @@ $(document).ready(function() {
     // console.log(data)
 
     const $poll = $('.poll-container');
-    const $title = $('<h1>').text(data.title).prependTo($poll);
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
+    const $title = $('<h1>').text(data.question).prependTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
     for (let i = 0; i < data.options.length; i++) {
@@ -42,10 +42,14 @@ $(document).ready(function() {
   function renderNewOption() {
     count++;
     const $addoption = $(".add-option-div");
+<<<<<<< HEAD
     let $input = $('<input>').addClass("form-control").attr('id', 'option' + count).attr('name', 'option' + count).attr('type', 'text');
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
+=======
+    let $input = $('<input>').addClass("form-control").attr('name', 'option' + count).attr('type', 'text');
+>>>>>>> ef61197475be2b3afb5d41ed28f280b045b21915
 
-    $('<div>').addClass("form-group").append($input).append($sortSpan).insertBefore($addoption);
+    $('<div>').addClass("form-group").append($input).insertBefore($addoption);
     return count;
   }
 

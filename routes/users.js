@@ -88,8 +88,6 @@ module.exports = (knex) => {
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
       poll_url: req.params.pid
-
-    }
   };
 
 

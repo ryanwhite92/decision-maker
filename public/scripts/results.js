@@ -21,7 +21,7 @@ $(document).ready(function() {
               renderTo: $results[0]
             },
 
-            colors: ["#061539"],
+            colors: ["#4A708B"],
 
             title: {
               text: "Here's the current results for:"

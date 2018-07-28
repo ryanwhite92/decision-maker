@@ -99,7 +99,7 @@ module.exports = (knex) => {
       .select('email', 'question', 'url')
       .where({ 'url': req.params.pid })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         mailgun.sendEmail(result[0]);
       })
       .catch((error) => console.err(error));

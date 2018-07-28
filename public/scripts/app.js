@@ -13,9 +13,9 @@ $(document).ready(function() {
   function randomQuestion() {
     const questionList = ["Where do you want to go for dinner on Wednesday?", "Do you like pizza?", "What movie should we watch?", "What is the flight velocity of an unladen swallow?"];
     const optionList1 = ["Somewhere cheap", "Yes", "Return of the Jedi", "What do you mean? An African or European swallow?"];
-    const optionList2 = ["Somewhere delicious", "No; I'm not human", "The Last Crusade", "Huh? I.. I don't know that... AAARRRRRGGH!"];
+    const optionList2 = ["Somewhere delicious", "I am stupid", "The Last Crusade", "Huh? I.. I don't know that... AAARRRRRGGH!"];
 
-    let rando = Math.floor(Math.random() * 3);
+    let rando = Math.floor(Math.random() * questionList.length);
     let arr = [questionList[rando], optionList1[rando], optionList2[rando]];
 
     $('#question').attr("placeholder", arr[0]);
@@ -66,6 +66,8 @@ $(document).ready(function() {
     });
   }
 
+  getPollData()
+
   function getRanks(response) {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
@@ -78,8 +80,6 @@ $(document).ready(function() {
       window.location.pathname = res.redirect;
     });
   };
-
-  getPollData()
 
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click', function(event) {
@@ -132,6 +132,16 @@ $(document).ready(function() {
       $('.err').slideUp();
     }
     setTimeout(f, 5000)
+  });
+
+  //Gets number of submissions and number of invites sent out
+  $('.rank-btn').on('click', function(event) { 
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + window.location.pathname
+    }).done((table) => {
+      console.log(table);
+    });
   });
 
 });

@@ -72,7 +72,7 @@ $(document).ready(function() {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "/results",
+      url: "/api/users" + window.location.pathname + "results",
       data: data,
     })
     .done((res) => {
@@ -86,7 +86,7 @@ $(document).ready(function() {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-    console.log(rankedPoints);
+    //console.log(rankedPoints);
     getRanks(rankedPoints)
   });
 
@@ -97,6 +97,11 @@ $(document).ready(function() {
   });
 
   // Check that all fields are filled in on submit
+
+  function timer() {
+    $('.err').slideUp();
+  }
+
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
@@ -128,20 +133,23 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    function f() {
-      $('.err').slideUp();
-    }
-    setTimeout(f, 5000)
+    setTimeout(timer, 5000)
   });
 
-  //Gets number of submissions and number of invites sent out
-  $('.rank-btn').on('click', function(event) { 
-    $.ajax({
-      method: "GET",
-      url: "/api/users" + window.location.pathname
-    }).done((table) => {
-      console.log(table);
-    });
-  });
+    // $('.rank-btn').on('click', function(event) { 
+    //   $.ajax({
+    //     method: "GET",
+    //     url: "/api/users"
+    //   }).then((table) => {
+    //     if (!table.emails.includes(":whateverTheEmailInputIs") && (window.location.pathname).includes(table.url)) {
+    //       event.preventDefault();
+    //       $(':whateverTheErrorMessageIs').slideDown();
+    //     }
+    //   });
+    // });
+
+  // });
+
+
 
 });

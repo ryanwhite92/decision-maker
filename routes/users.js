@@ -57,7 +57,7 @@ module.exports = (knex) => {
   router.post("/poll", (req, res) => {
     let optionArr = [];
     let val = Object.values(req.body);
-    let key = Object.keys(req.body)
+    let key = Object.keys(req.body);
     for (let i = 0; i < val.length; i++) {
       if (key[i].includes("option")) {
         optionArr.push(val[i]);

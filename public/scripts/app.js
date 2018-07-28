@@ -81,13 +81,26 @@ $(document).ready(function() {
     });
   };
 
+  function getEmails() {
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + window.location.pathname
+    }).done((table) => {
+      if (table.emails.includes(req.params.url)) {
+        event.preventDefault();
+        console.log('Hello')
+        //$(':whateverTheErrorMessageIs').slideDown();
+      }
+    });
+  }
+
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click', function(event) {
+    getEmails()
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-    //console.log(rankedPoints);
-    getRanks(rankedPoints)
+    getRanks(rankedPoints);
   });
 
   // Add another option to poll form when clicked
@@ -136,16 +149,6 @@ $(document).ready(function() {
     setTimeout(timer, 5000)
   });
 
-  // $('.rank-btn').on('click', function(event) { 
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "/api/users/poll" + window.location.pathname
-  //   }).then((table) => {
-  //     if (!table.emails.includes(":whateverTheEmailInputIs")) {
-  //       event.preventDefault();
-  //       $(':whateverTheErrorMessageIs').slideDown();
-  //     }
-  //   });
-  // });
+
 
 });

@@ -20,6 +20,12 @@ exports.seed = function(knex, Promise) {
             question: "Where do you want to meet?",
             url: "sdbvcxngdf",
             emails: ['admin1@example.com', 'user1@example.com', 'user1@email.com']
+          }),
+        knex('response')
+          .insert({
+            ranks: [4,3,2,1],
+            email: 'admin1@example.com',
+            poll_url: "sdafasgdfg"
           })
       ]);
     });

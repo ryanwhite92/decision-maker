@@ -69,7 +69,7 @@ module.exports = (knex) => {
   });
 
   router.get("/poll/:pid", (req, res) => {
-    let url = body.req.url;
+    let url = req.params.pid;
     knex('poll')
       .select("*")
       .where({"url": url})

@@ -8,49 +8,50 @@ const mailgun = require('./util/mailgun.js');
 module.exports = (knex) => {
 
   router.get("/poll", (req, res) => {
-    knex
+    knex('poll')
       .select("*")
-      .from("poll")
       .then((results) => {
         res.json(results);
     });
   });
 
   router.get("/poll/:pid/results", (req, res) => {
-    knex
+    knex('poll')
       .select("poll.options", "poll.question", "response.ranks")
-      .from("poll")
       .join("response", {"poll.url": "poll_url"})
       .where({ "poll.url": req.params.pid })
       .then((results) => {
-        const options = results[0].options;
-        const question = results[0].question;
-        const rankedArray = [];
+        try {
+          const options = results[0].options;
+          const question = results[0].question;
+          const rankedArray = [];
 
-        // Get ranks array from each response in db
-        results.forEach((result) => {
-          rankedArray.push(result.ranks);
-        });
-
-        // Sum ranks by index in rankedArray
-        let ranks = rankedArray.reduce((accumulator, current) => {
-          current.forEach((num, i) => {
-            accumulator[i] = (accumulator[i] || 0) + num;
+          // Get ranks array from each response in db
+          results.forEach((result) => {
+            rankedArray.push(result.ranks);
           });
-          return accumulator;
-        }, []);
 
-        res.json({ options, question, ranks });
+          // Sum ranks by index in rankedArray
+          let ranks = rankedArray.reduce((accumulator, current) => {
+            current.forEach((num, i) => {
+              accumulator[i] = (accumulator[i] || 0) + num;
+            });
+            return accumulator;
+          }, []);
+
+          res.json({ options, question, ranks });
+        } catch (error) {
+          console.error(error);
+        }
       });
   });
 
   router.get("/", (req, res) => {
-    knex
+    knex('poll')
       .select("*")
-      .from("poll")
       .then((results) => {
         res.json(results);
-    });
+      });
   });
 
   router.post("/poll", (req, res) => {
@@ -78,17 +79,18 @@ module.exports = (knex) => {
         console.log(rows);
       })
       .catch(error => console.error(error));
+
     mailgun.sendEmail(newPoll);
     mailgun.sendInvites(newPoll);
 
-    res.redirect(`/poll/${pollUrl}`);
+    res.redirect(`/poll/${pollUrl}/results`);
   });
 
   router.post("/poll/:pid/results", (req, res) => {
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
       poll_url: req.params.pid
-  };
+    };
 
     knex('response')
       .insert(newResponse)

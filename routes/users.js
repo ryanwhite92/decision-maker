@@ -15,6 +15,20 @@ module.exports = (knex) => {
     });
   });
 
+  router.get("/poll/:pid/response", (req, res) => {
+    try {
+      knex('response')
+        .select('*')
+        .where({ "poll_url": req.params.pid })
+        then(results => {
+          res.json(results);
+        })
+        .catch(error => console.error(error));
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
   router.get("/poll/:pid/results", (req, res) => {
     knex('poll')
       .select("poll.options", "poll.question", "response.ranks")
@@ -89,6 +103,7 @@ module.exports = (knex) => {
   router.post("/poll/:pid/results", (req, res) => {
     const newResponse = {
       ranks: JSON.parse(req.body.ranking),
+      email: JSON.parse(req.body.email),
       poll_url: req.params.pid
     };
 

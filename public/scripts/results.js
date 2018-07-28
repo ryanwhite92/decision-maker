@@ -56,7 +56,21 @@ $(document).ready(function() {
       });
   }
 
-  createPoll()
+  function renderEmailList() {
+    let path = window.location.pathname;
+    path = path.replace("results", "response");
+    console.log(path);
+
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + path
+    }).done((responses) => {
+      console.log(responses);
+    });
+  }
+
+  createPoll();
+  renderEmailList();
 });
 
 

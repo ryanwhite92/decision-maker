@@ -21,33 +21,25 @@ $(document).ready(function() {
               renderTo: $results[0]
             },
 
-            colors: ["#4A708B"],
+            colors: ["#061539"],
 
             title: {
               text: "Here's the current results for:"
             },
-
             subtitle: {
               text: table.question
             },
-
             xAxis: {
               categories: optionArr
             },
-
             yAxis: {
-
               title: {
-
                 text: "Votes"
               },
-
               labels: {
                 enabled: false
               }
-
             },
-
             series: [{
               showInLegend: false,
               data: table.ranks
@@ -59,21 +51,22 @@ $(document).ready(function() {
   function renderEmailList() {
     let path = window.location.pathname;
     path = path.replace("results", "response");
-    console.log(path);
 
     $.ajax({
       method: "GET",
       url: "/api/users" + path
-    }).done((responses) => {
-      console.log(responses);
+    }).done(function(responses) {
+      const total = responses.length;
+      const $results = $(".results");
+      const $list = $('<ul>').text(total + ' responses from: ').appendTo($results);
+
+      for (let i = 0; i < responses.length; i++) {
+        let email = responses[i].email;
+        $('<li>').text(email).appendTo($list);
+      }
     });
   }
 
   createPoll();
   renderEmailList();
 });
-
-
-
-
-

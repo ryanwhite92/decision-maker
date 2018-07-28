@@ -1,24 +1,19 @@
 $logo-font: Orbitron, sans-serif;
 $text-font: PT Sans Narrow, sans-serif;
-$primary-color: #2D4471;
-$logo-border-color: #D6DBE5;
-$secondary-color: #7887AB;
-$tertiary-color: #061539;
-$hover-color: #4F628E;
-
+$primary-color: #eee;
+$error: #ff6347;
 
 body {
   background: url(../images/sunrise.jpg) no-repeat center center fixed;
   background-size: cover;
   font-family: $text-font;
-  color: $tertiary-color;
   height: 100vh;
 }
 
 .nav-bar {
   font-family: $logo-font;
   font-size: 2em;
-  color: #eee;
+  color: $primary-color;
   position: fixed;
   top: 0;
   height: 3.5em;
@@ -30,13 +25,21 @@ body {
   padding-left: 1em;
   position: relative;
   top: 0.1em;
+
+  a {
+  color: $primary-color;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .container {
   font-family: $text-font;
   font-size: 1.5em;
   text-align: center;
-  color: #eee;
+  color: $primary-color;
   position: relative;
   top: 7em;
   min-height: 20em;

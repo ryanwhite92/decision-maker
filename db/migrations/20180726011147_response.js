@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('response', (table) => {
     table.increments('id')
     table.specificType('ranks', 'integer[]')
+    table.string('email')
     table.string('poll_url')
   });
 };

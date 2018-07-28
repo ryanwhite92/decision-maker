@@ -68,12 +68,12 @@ $(document).ready(function() {
 
   getPollData()
 
-  function getRanks(response) {
+  function getRanks(response, email) {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "results",
-      data: data,
+      url: "/api/users" + window.location.pathname + "/results",
+      data: { ranking: response, email: email },
     })
     .done((res) => {
       console.log('Success: posted to ' + window.location.pathname + "/results");
@@ -96,11 +96,11 @@ $(document).ready(function() {
 
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click', function(event) {
-    getEmails()
+    let $email = $('#email').val();
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-    getRanks(rankedPoints);
+    getRanks(rankedPoints, $email);
   });
 
   // Add another option to poll form when clicked
@@ -149,6 +149,17 @@ $(document).ready(function() {
     setTimeout(timer, 5000)
   });
 
+  // $('.rank-btn').on('click', function(event) {
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/api/users/poll" + window.location.pathname
+  //   }).then((table) => {
+  //     if (!table.emails.includes(":whateverTheEmailInputIs")) {
+  //       event.preventDefault();
+  //       $(':whateverTheErrorMessageIs').slideDown();
+  //     }
+  //   });
+  // });
 
 
 });

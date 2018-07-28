@@ -111,8 +111,9 @@ module.exports = (knex) => {
   });
 
   router.post("/poll/:pid/results", (req, res) => {
+    console.log(req.body);
     const newResponse = {
-      ranks: JSON.parse(req.body.ranking),
+      ranks: req.body.ranking,
       email: req.body.email,
       poll_url: req.params.pid
     };

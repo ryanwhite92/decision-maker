@@ -72,24 +72,24 @@ $(document).ready(function() {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "/results",
+      url: "/api/users" + window.location.pathname + "results",
       data: { ranking: response, email: email },
     })
     .done((res) => {
-      console.log('Success: posted to ' + window.location.pathname + "/results");
+      console.log('Success: posted to ' + window.location.pathname + "results");
       window.location.pathname = res.redirect;
     });
   };
 
-  function getEmails() {
+  function getEmails(data) {
     $.ajax({
       method: "GET",
       url: "/api/users" + window.location.pathname
     }).done((table) => {
-      if (table.emails.includes(req.params.url)) {
-        event.preventDefault();
-        console.log('Hello')
-        //$(':whateverTheErrorMessageIs').slideDown();
+      if (table[0].emails.includes(data)) {
+        console.log('Works')
+      } else {
+        console.log("Error")
       }
     });
   }
@@ -100,7 +100,19 @@ $(document).ready(function() {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-    getRanks(rankedPoints, $email);
+
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + window.location.pathname
+    }).done((table) => {
+      if (table[0].emails.includes($email)) {
+        console.log('Works')
+        getRanks(rankedPoints, $email);
+      } else {
+        console.log("Error")
+        event.preventDefault();
+      }
+    });
   });
 
   // Add another option to poll form when clicked

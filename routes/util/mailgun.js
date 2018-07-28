@@ -18,7 +18,7 @@ module.exports = {
 
     mailgun.messages().send(mailgunSetup, (err, body) => {
       if (err) return console.error(err);
-      console.log(mailgunSetup);
+      //console.log(mailgunSetup);
     });
   },
 
@@ -34,7 +34,7 @@ module.exports = {
 
       mailgun.messages().send(mailgunSetup, (err, body) => {
         if (err) return console.error(err);
-        console.log(mailgunSetup);
+        //console.log(mailgunSetup);
       });
     }
   }

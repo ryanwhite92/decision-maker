@@ -20,7 +20,9 @@ $(document).ready(function() {
               type: 'column',
               renderTo: $results[0]
             },
+
             colors: ["#061539"],
+
             title: {
               text: "Here's the current results for:"
             },

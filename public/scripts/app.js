@@ -13,9 +13,9 @@ $(document).ready(function() {
   function randomQuestion() {
     const questionList = ["Where do you want to go for dinner on Wednesday?", "Do you like pizza?", "What movie should we watch?", "What is the flight velocity of an unladen swallow?"];
     const optionList1 = ["Somewhere cheap", "Yes", "Return of the Jedi", "What do you mean? An African or European swallow?"];
-    const optionList2 = ["Somewhere delicious", "No; I'm not human", "The Last Crusade", "Huh? I.. I don't know that... AAARRRRRGGH!"];
+    const optionList2 = ["Somewhere delicious", "I am stupid", "The Last Crusade", "Huh? I.. I don't know that... AAARRRRRGGH!"];
 
-    let rando = Math.floor(Math.random() * 3);
+    let rando = Math.floor(Math.random() * questionList.length);
     let arr = [questionList[rando], optionList1[rando], optionList2[rando]];
 
     $('#question').attr("placeholder", arr[0]);
@@ -66,11 +66,13 @@ $(document).ready(function() {
     });
   }
 
+  getPollData()
+
   function getRanks(response) {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "/results",
+      url: "/api/users" + window.location.pathname + "results",
       data: data,
     })
     .done((res) => {
@@ -79,14 +81,12 @@ $(document).ready(function() {
     });
   };
 
-  getPollData()
-
   // Gets array of options in order that the user ranked them
   $('.rank-btn').on('click', function(event) {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-    console.log(rankedPoints);
+    //console.log(rankedPoints);
     getRanks(rankedPoints)
   });
 
@@ -97,6 +97,11 @@ $(document).ready(function() {
   });
 
   // Check that all fields are filled in on submit
+
+  function timer() {
+    $('.err').slideUp();
+  }
+
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
@@ -128,10 +133,19 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    function f() {
-      $('.err').slideUp();
-    }
-    setTimeout(f, 5000)
+    setTimeout(timer, 5000)
   });
+
+  // $('.rank-btn').on('click', function(event) { 
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/api/users/poll" + window.location.pathname
+  //   }).then((table) => {
+  //     if (!table.emails.includes(":whateverTheEmailInputIs")) {
+  //       event.preventDefault();
+  //       $(':whateverTheErrorMessageIs').slideDown();
+  //     }
+  //   });
+  // });
 
 });

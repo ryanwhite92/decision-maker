@@ -68,10 +68,20 @@ module.exports = (knex) => {
       });
   });
 
+  router.get("/poll/:pid", (req, res) => {
+    let url = body.req.url;
+    knex('poll')
+      .select("*")
+      .where({"url": url})
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
   router.post("/poll", (req, res) => {
     let optionArr = [];
     let val = Object.values(req.body);
-    let key = Object.keys(req.body)
+    let key = Object.keys(req.body);
     for (let i = 0; i < val.length; i++) {
       if (key[i].includes("option")) {
         optionArr.push(val[i]);
@@ -116,7 +126,7 @@ module.exports = (knex) => {
       .select('email', 'question', 'url')
       .where({ 'url': req.params.pid })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         mailgun.sendEmail(result[0]);
       })
       .catch((error) => console.err(error));

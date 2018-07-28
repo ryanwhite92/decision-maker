@@ -136,20 +136,16 @@ $(document).ready(function() {
     setTimeout(timer, 5000)
   });
 
-    // $('.rank-btn').on('click', function(event) { 
-    //   $.ajax({
-    //     method: "GET",
-    //     url: "/api/users"
-    //   }).then((table) => {
-    //     if (!table.emails.includes(":whateverTheEmailInputIs") && (window.location.pathname).includes(table.url)) {
-    //       event.preventDefault();
-    //       $(':whateverTheErrorMessageIs').slideDown();
-    //     }
-    //   });
-    // });
-
+  // $('.rank-btn').on('click', function(event) { 
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/api/users/poll" + window.location.pathname
+  //   }).then((table) => {
+  //     if (!table.emails.includes(":whateverTheEmailInputIs")) {
+  //       event.preventDefault();
+  //       $(':whateverTheErrorMessageIs').slideDown();
+  //     }
+  //   });
   // });
-
-
 
 });

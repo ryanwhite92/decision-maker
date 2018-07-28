@@ -54,13 +54,15 @@ $(document).ready(function() {
       method: "GET",
       url: "/api/users" + path
     }).done(function(responses) {
-      const total = responses.length;
-      const $results = $(".results");
-      const $list = $('<ul>').text(total + ' responses from: ').appendTo($results);
+      if (responses.length > 0) {
+        const total = responses.length;
+        const $results = $(".results");
+        const $list = $('<ul>').text(total + ' responses from: ').appendTo($results);
 
-      for (let i = 0; i < responses.length; i++) {
-        let email = responses[i].email;
-        $('<li>').text(email).appendTo($list);
+        for (let i = 0; i < responses.length; i++) {
+          let email = responses[i].email;
+          $('<li>').text(email).appendTo($list);
+        }
       }
     });
   }

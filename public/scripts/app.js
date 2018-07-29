@@ -28,7 +28,7 @@ $(document).ready(function() {
   function renderPoll(data) {
     const $poll = $('.poll-container');
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
-    const $small = $('<small>').text('(Order from top to bottom)').prependTo($poll);
+    const $small = $('<small>').text('(Order your preferences from top to bottom)').prependTo($poll);
     const $title = $('<h1>').text(data.question).prependTo($poll);
     const $sortSpan = $('<span>').addClass('ui-icon ui-icon-arrowthick-2-n-s');
 
@@ -94,7 +94,13 @@ $(document).ready(function() {
     });
   }
 
+  //Checks to see if the user has permission to vote on this poll
   // Gets array of options in order that the user ranked them
+
+  function timer() {
+    $('.err').slideUp();
+  }
+
   $('.rank-btn').on('click', function(event) {
     let $email = $('#email').val();
     let rankedOptions = $('#sortable').sortable('toArray');
@@ -105,14 +111,16 @@ $(document).ready(function() {
       method: "GET",
       url: "/api/users" + window.location.pathname
     }).done((table) => {
-      if (table[0].emails.includes($email)) {
+      if (table[0].emails.includes($email) || table[0].email.includes($email)) {
         console.log('Works')
         getRanks(rankedPoints, $email);
       } else {
         console.log("Error")
+        $('#bad-email').slideDown();
         event.preventDefault();
       }
     });
+    setTimeout(timer, 5000)
   });
 
   // Add another option to poll form when clicked
@@ -122,10 +130,6 @@ $(document).ready(function() {
   });
 
   // Check that all fields are filled in on submit
-
-  function timer() {
-    $('.err').slideUp();
-  }
 
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {

@@ -164,18 +164,4 @@ $(document).ready(function() {
     });
     setTimeout(timer, 5000)
   });
-
-  // $('.rank-btn').on('click', function(event) {
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "/api/users/poll" + window.location.pathname
-  //   }).then((table) => {
-  //     if (!table.emails.includes(":whateverTheEmailInputIs")) {
-  //       event.preventDefault();
-  //       $(':whateverTheErrorMessageIs').slideDown();
-  //     }
-  //   });
-  // });
-
-
 });

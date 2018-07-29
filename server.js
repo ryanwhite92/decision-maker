@@ -36,8 +36,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/", usersRoutes(knex));
-///api/users
+app.use("/api/users", usersRoutes(knex));
 
 app.get("/poll/:pid/results", (req, res) => {
   res.render("results");

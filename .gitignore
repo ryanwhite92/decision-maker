@@ -5,3 +5,4 @@
   routes/.DS_Store
   routes/util/.DS_Store
   styles/.DS_Store
+  .env

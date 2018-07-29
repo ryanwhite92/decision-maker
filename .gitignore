@@ -1,8 +1,7 @@
-node_modules/
-public/styles
-public/.DS_Store
-.DS_Store
-.env
-*.log
-*.sqlite3
-planning
+  .DS_Store
+  node_modules/
+  public/.DS_Store
+  public/styles/layout.css
+  routes/.DS_Store
+  routes/util/.DS_Store
+  styles/.DS_Store

@@ -162,7 +162,7 @@ $(document).ready(function() {
     });
     $("input").each(function() {
       if(!$(this).val()) {
-        $('#missing-option1').slideDown();
+        $('#missing-option').slideDown();
         event.preventDefault();
       }
     });

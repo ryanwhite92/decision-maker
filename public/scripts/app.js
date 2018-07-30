@@ -144,8 +144,8 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    $(":input[id*='option']").each(function() {
-      if($('input#option1.form-control').val() === "") {
+    $(":input[id*='option'].form-control").each(function() {
+      if($(':input[id*="option"].form-control').val() === "") {
         $('#missing-option1').slideDown();
         event.preventDefault();
       }

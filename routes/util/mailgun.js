@@ -6,14 +6,15 @@ const fs = require('fs');
 module.exports = {
 
   sendEmail: function(data) {
-    const url = `http://localhost:8080/poll/${data.url}`
-    const content = fs.readFile(__dirname + "/email.html", "utf-8");
-    const content2 = fs.readFile(__dirname + "/email-end.html", "utf-8");
+    const url = `https://boiling-meadow-35275.herokuapp.com/${data.url}`
+    fs.appendFileSync(__dirname + "/email.html", url);
+    fs.appendFileSync(__dirname + "/email.html", __dirname + "/email-end.html");
+    const content = fs.readFileSync(__dirname + "/email.html", "utf-8");
     const mailgunSetup = {
       from: 'admin@dside.com',
       to: data.email,
       subject: `dSide - ${data.question}`,
-      html: content + url + content2
+      html: content
     };
 
     mailgun.messages().send(mailgunSetup, (err, body) => {

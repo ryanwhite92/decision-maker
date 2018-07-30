@@ -81,10 +81,17 @@ $(document).ready(function() {
     });
   };
 
-  // Simple email validation
-  function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+  function getEmails(data) {
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + window.location.pathname
+    }).done((table) => {
+      if (table[0].emails.includes(data)) {
+        console.log('Works')
+      } else {
+        console.log("Error")
+      }
+    });
   }
 
   function timer() {
@@ -96,21 +103,6 @@ $(document).ready(function() {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-
-     // Check if email field is empty and display error
-    if (!$email) {
-      console.log("Error")
-      $('#no-email').slideDown();
-      setTimeout(timer, 5000);
-      return false;
-    }
-
-     // Check if entered email is valid
-    if (!validateEmail($email)) {
-      $('#invalid-poll-email').slideDown();
-      setTimeout(timer, 5000);
-      return false;
-    }
 
     $.ajax({
       method: "GET",
@@ -140,9 +132,6 @@ $(document).ready(function() {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
         $('#missing-email').slideDown();
-        event.preventDefault();
-      } else if (!validateEmail($('input#email.form-control').val())) {
-        $('#invalid-email').slideDown();
         event.preventDefault();
       }
     });
@@ -177,88 +166,6 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    setTimeout(timer, 5000);
-
-    let $emails = $('#emails').val();
-    $emails = $emails.split(/,\s*/g);
-     for (let i = 0; i < $emails.length; i++) {
-      if (!validateEmail($emails[i])) {
-        $('#invalid-emails').slideDown();
-        event.preventDefault();
-      }
-    }
+    setTimeout(timer, 5000)
   });
-
-    function createPoll() {
-      $.ajax({
-        method: "GET",
-        url: "/api/users" + window.location.pathname
-      }).done((table) => {
-          let $results = $(".results");
-          let optionArr = [];
-          for (let i = 0; i < table.options.length; i++) {
-            optionArr.push(table.options[i])
-          }
-
-          if (table.ranks.length < 1) {
-            table.ranks = [1,1]
-          }
-
-          document.chart = new Highcharts.Chart({
-            chart: {
-              type: 'column',
-              renderTo: $results[0]
-            },
-
-            colors: ["#061539"],
-
-            title: {
-              text: "Here's the current results for:"
-            },
-            subtitle: {
-              text: table.question
-            },
-            xAxis: {
-              categories: optionArr
-            },
-            yAxis: {
-              title: {
-                text: "Votes"
-              },
-              labels: {
-                enabled: false
-              }
-            },
-            series: [{
-              showInLegend: false,
-              data: table.ranks
-            }]
-          });
-      });
-  }
-
-  function renderEmailList() {
-    let path = window.location.pathname;
-    path = path.replace("results", "response");
-
-    $.ajax({
-      method: "GET",
-      url: "/api/users" + path
-    }).done(function(responses) {
-      if (responses.length > 0) {
-        const total = responses.length;
-        const $results = $(".results");
-        const $list = $('<ul>').addClass("unstyled").text("Votes: " + total).appendTo($results);
-
-        for (let i = 0; i < responses.length; i++) {
-          let email = responses[i].email;
-          $('<li>').text(email).appendTo($list);
-        }
-      }
-    });
-  }
-
-  createPoll();
-  renderEmailList();
-  
 });

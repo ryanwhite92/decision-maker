@@ -10,7 +10,7 @@ module.exports = {
     fs.appendFile(__dirname + "/email.html", url);
     fs.appendFile(__dirname + "/email.html", __dirname + "/email-end.html")
     const content = fs.readFile(__dirname + "/email.html", "utf-8");
-    const mailgunSetup = {
+    let mailgunSetup = {
       from: 'admin@dside.com',
       to: data.email,
       subject: `dSide - ${data.question}`,

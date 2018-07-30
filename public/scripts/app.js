@@ -70,9 +70,12 @@ $(document).ready(function() {
 
   function getRanks(response, email) {
     let data = "ranking=" + JSON.stringify(response);
+    let path = "/api/users" + window.location.pathname + "/results";
+    path = path.replace("//", "/");
+
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "results",
+      url: path,
       data: { ranking: response, email: email },
     })
     .done((res) => {
@@ -104,6 +107,21 @@ $(document).ready(function() {
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
 
+    // Check if email field is empty and display error
+    if (!$email) {
+      console.log("Error")
+      $('#no-email').slideDown();
+      setTimeout(timer, 5000);
+      return false;
+    }
+
+    // Check if entered email is valid
+    if (!validateEmail($email)) {
+      $('#invalid-poll-email').slideDown();
+      setTimeout(timer, 5000);
+      return false;
+    }
+
     $.ajax({
       method: "GET",
       url: "/api/users" + window.location.pathname
@@ -127,7 +145,6 @@ $(document).ready(function() {
   });
 
   // Check that all fields are filled in on submit
-
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
@@ -141,19 +158,6 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    // $(":input#option1.form-control").each(function() {
-    //   if($('input#option1.form-control').val() === "") {
-    //     $('#missing-option1').slideDown();
-    //     event.preventDefault();
-    //   }
-    // });
-
-    // $(":input#option2.form-control").each(function() {
-    //   if($('input#option2.form-control').val() === "") {
-    //     $('#missing-option2').slideDown();
-    //     event.preventDefault();
-    //   }
-    // });
     $(":input#emails.form-control").each(function() {
       if($('input#emails.form-control').val() === "") {
         $('#missing-recipients').slideDown();

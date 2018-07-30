@@ -13,7 +13,7 @@ module.exports = {
       from: 'admin@dside.com',
       to: data.email,
       subject: `dSide - ${data.question}`,
-      html: content + url + content2;
+      html: content + url + content2
     };
 
     mailgun.messages().send(mailgunSetup, (err, body) => {

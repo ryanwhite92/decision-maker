@@ -88,7 +88,7 @@ module.exports = (knex) => {
       }
     }
     const pollUrl = math.generateRandomString(10);
-    const emails = req.body.emails.split(', ');
+    const emails = req.body.emails.split(/,\s*/g);
     const newPoll = {
       question: req.body.question,
       email: req.body.email,

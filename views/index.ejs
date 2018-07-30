@@ -38,6 +38,7 @@
               <label name="email">Enter your email address</label>
               <input class="form-control" type="email" id="email" name="email" placeholder="example@example.com">
               <p class="err" id="missing-email">Please enter your email</p>
+              <p class="err" id="invalid-email">Invalid Email</p>
             </div>
             <div class="form-group">
               <label name="question">Ask your question</label>
@@ -60,6 +61,7 @@
               <label name="emails">Enter the email addresses of the people you want to ask:</label>
               <input class="form-control" id="emails" name="emails" type="text" placeholder='Separate with commas, like: "example@example.com, email@email.com"'>
               <p class="err" id="missing-recipients">Please enter the email addresses of the people you'd like to poll</p>
+              <p class="err" id="invalid-emails">One or more emails are invalid</p>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-default poll-submit">Submit</button>

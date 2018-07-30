@@ -23,8 +23,6 @@ $(document).ready(function() {
     $('#option2').attr("placeholder", arr[2]);
   }
 
-  randomQuestion();
-
   function renderPoll(data) {
     const $poll = $('.poll-container');
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
@@ -66,8 +64,6 @@ $(document).ready(function() {
     });
   }
 
-  getPollData()
-
   function getRanks(response, email) {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
@@ -81,25 +77,21 @@ $(document).ready(function() {
     });
   };
 
-  function getEmails(data) {
-    $.ajax({
-      method: "GET",
-      url: "/api/users" + window.location.pathname
-    }).done((table) => {
-      if (table[0].emails.includes(data)) {
-        console.log('Works')
-      } else {
-        console.log("Error")
-      }
-    });
+  // Simple email validation
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
 
-  //Checks to see if the user has permission to vote on this poll
+  // Checks to see if the user has permission to vote on this poll
   // Gets array of options in order that the user ranked them
 
   function timer() {
     $('.err').slideUp();
   }
+
+  randomQuestion();
+  getPollData();
 
   $('.rank-btn').on('click', function(event) {
     let $email = $('#email').val();
@@ -137,12 +129,14 @@ $(document).ready(function() {
     renderNewOption();
   });
 
-  // Check that all fields are filled in on submit
-
+  // Check that all fields are filled in on submit and that emails entered are valid
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
         $('#missing-email').slideDown();
+        event.preventDefault();
+      } else if (!validateEmail($('input#email.form-control').val())) {
+        $('#invalid-email').slideDown();
         event.preventDefault();
       }
     });
@@ -158,12 +152,6 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    // $(":input#option2.form-control").each(function() {
-    //   if($('input#option2.form-control').val() === "") {
-    //     $('#missing-option2').slideDown();
-    //     event.preventDefault();
-    //   }
-    // });
     $(":input#emails.form-control").each(function() {
       if($('input#emails.form-control').val() === "") {
         $('#missing-recipients').slideDown();
@@ -171,5 +159,15 @@ $(document).ready(function() {
       }
     });
     setTimeout(timer, 5000)
+
+    let $emails = $('#emails').val();
+    $emails = $emails.split(/,\s*/g);
+
+    for (let i = 0; i < $emails.length; i++) {
+      if (!validateEmail($emails[i])) {
+        $('#invalid-emails').slideDown();
+        event.preventDefault();
+      }
+    }
   });
 });

@@ -23,6 +23,8 @@ $(document).ready(function() {
     $('#option2').attr("placeholder", arr[2]);
   }
 
+  randomQuestion();
+
   function renderPoll(data) {
     const $poll = $('.poll-container');
     const $list = $('<ul>').attr('id', 'sortable').prependTo($poll);
@@ -64,11 +66,13 @@ $(document).ready(function() {
     });
   }
 
+  getPollData()
+
   function getRanks(response, email) {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "/results",
+      url: "/api/users" + window.location.pathname + "results",
       data: { ranking: response, email: email },
     })
     .done((res) => {
@@ -77,42 +81,28 @@ $(document).ready(function() {
     });
   };
 
-  // Simple email validation
-  function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+  function getEmails(data) {
+    $.ajax({
+      method: "GET",
+      url: "/api/users" + window.location.pathname
+    }).done((table) => {
+      if (table[0].emails.includes(data)) {
+        console.log('Works')
+      } else {
+        console.log("Error")
+      }
+    });
   }
-
-  // Checks to see if the user has permission to vote on this poll
-  // Gets array of options in order that the user ranked them
 
   function timer() {
     $('.err').slideUp();
   }
-
-  randomQuestion();
-  getPollData();
 
   $('.rank-btn').on('click', function(event) {
     let $email = $('#email').val();
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
-
-    // Check if email field is empty and display error
-    if (!$email) {
-      console.log("Error")
-      $('#no-email').slideDown();
-      setTimeout(timer, 5000);
-      return false;
-    }
-
-    // Check if entered email is valid
-    if (!validateEmail($email)) {
-      $('#invalid-poll-email').slideDown();
-      setTimeout(timer, 5000);
-      return false;
-    }
 
     $.ajax({
       method: "GET",
@@ -136,14 +126,12 @@ $(document).ready(function() {
     renderNewOption();
   });
 
-  // Check that all fields are filled in on submit and that emails entered are valid
+  // Check that all fields are filled in on submit
+
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {
         $('#missing-email').slideDown();
-        event.preventDefault();
-      } else if (!validateEmail($('input#email.form-control').val())) {
-        $('#invalid-email').slideDown();
         event.preventDefault();
       }
     });
@@ -159,16 +147,10 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
+
     $(":input#option2.form-control").each(function() {
       if($('input#option2.form-control').val() === "") {
         $('#missing-option2').slideDown();
-        event.preventDefault();
-      }
-    });
-    $(":input").each(function() {
-      if($("input").val() === "") {
-        // $('#missing-option1').slideDown();
-        console.log('works');
         event.preventDefault();
       }
     });
@@ -178,16 +160,13 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    setTimeout(timer, 5000)
-
-    let $emails = $('#emails').val();
-    $emails = $emails.split(/,\s*/g);
-
-    for (let i = 0; i < $emails.length; i++) {
-      if (!validateEmail($emails[i])) {
-        $('#invalid-emails').slideDown();
+    $("input").each(function() {
+      if(!$(this).val()) {
+        // $('#missing-option1').slideDown();
+        console.log('works');
         event.preventDefault();
       }
-    }
+    });
+    setTimeout(timer, 5000)
   });
 });

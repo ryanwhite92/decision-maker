@@ -97,6 +97,12 @@ $(document).ready(function() {
     });
   }
 
+  // Simple email validation
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   function timer() {
     $('.err').slideUp();
   }
@@ -150,6 +156,9 @@ $(document).ready(function() {
       if($('input#email.form-control').val() === "") {
         $('#missing-email').slideDown();
         event.preventDefault();
+      } else if (!validateEmail($('input#email.form-control').val())) {
+        $('#invalid-email').slideDown();
+        event.preventDefault();
       }
     });
     $(":input#question.form-control").each(function() {
@@ -170,6 +179,15 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    setTimeout(timer, 5000)
+    setTimeout(timer, 5000);
+
+    let $emails = $('#emails').val();
+    $emails = $emails.split(/,\s*/g);
+     for (let i = 0; i < $emails.length; i++) {
+      if (!validateEmail($emails[i])) {
+        $('#invalid-emails').slideDown();
+        event.preventDefault();
+      }
+    }
   });
 });

@@ -146,9 +146,22 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    $('[id^=option]').each(function() {
-      if($('[id^=option]').val() === "") {
+    $(":input#option1.form-control").each(function() {
+      if($('input#option1.form-control').val() === "") {
         $('#missing-option1').slideDown();
+        event.preventDefault();
+      }
+    });
+    $(":input#option2.form-control").each(function() {
+      if($('input#option2.form-control').val() === "") {
+        $('#missing-option2').slideDown();
+        event.preventDefault();
+      }
+    });
+    $(":input").each(function() {
+      if($("input").val() === "") {
+        // $('#missing-option1').slideDown();
+        console.log('works');
         event.preventDefault();
       }
     });

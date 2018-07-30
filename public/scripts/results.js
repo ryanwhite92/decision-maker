@@ -20,9 +20,7 @@ $(document).ready(function() {
               type: 'column',
               renderTo: $results[0]
             },
-
             colors: ["#061539"],
-
             title: {
               text: "Here's the current results for:"
             },
@@ -46,6 +44,7 @@ $(document).ready(function() {
             }]
           });
       });
+      renderEmailList();
   }
 
   function renderEmailList() {
@@ -56,6 +55,7 @@ $(document).ready(function() {
       method: "GET",
       url: "/api/users" + path
     }).done(function(responses) {
+      console.log(responses);
       if (responses.length > 0) {
         const total = responses.length;
         const $results = $(".results");
@@ -70,5 +70,4 @@ $(document).ready(function() {
   }
 
   createPoll();
-  renderEmailList();
 });

@@ -9,7 +9,7 @@ module.exports = {
     const url = `https://boiling-meadow-35275.herokuapp.com/${data.url}`
     fs.appendFile(__dirname + "/email.html", url);
     fs.appendFile(__dirname + "/email.html", __dirname + "/email-end.html");
-    const content = fs.readFile(__dirname + "/email.html", "utf-8");
+    let content = fs.readFile(__dirname + "/email.html", "utf-8");
     const mailgunSetup = {
       from: 'admin@dside.com',
       to: data.email,

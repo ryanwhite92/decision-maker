@@ -70,9 +70,12 @@ $(document).ready(function() {
 
   function getRanks(response, email) {
     let data = "ranking=" + JSON.stringify(response);
+    let path = "/api/users" + window.location.pathname + "/results";
+    path = path.replace("//", "/");
+
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "results",
+      url: path,
       data: { ranking: response, email: email },
     })
     .done((res) => {
@@ -97,7 +100,7 @@ $(document).ready(function() {
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
 
-     // Check if email field is empty and display error
+    // Check if email field is empty and display error
     if (!$email) {
       console.log("Error")
       $('#no-email').slideDown();
@@ -105,7 +108,7 @@ $(document).ready(function() {
       return false;
     }
 
-     // Check if entered email is valid
+    // Check if entered email is valid
     if (!validateEmail($email)) {
       $('#invalid-poll-email').slideDown();
       setTimeout(timer, 5000);
@@ -135,7 +138,6 @@ $(document).ready(function() {
   });
 
   // Check that all fields are filled in on submit
-
   $('.poll-submit').on('click', function(event) {
     $(":input#email.form-control").each(function() {
       if($('input#email.form-control').val() === "") {

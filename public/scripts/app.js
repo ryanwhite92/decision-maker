@@ -144,7 +144,7 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    $(":input#option1.form-control").each(function() {
+    $('[id^=option]').each(function() {
       if($('[id^=option]').val() === "") {
         $('#missing-option1').slideDown();
         event.preventDefault();

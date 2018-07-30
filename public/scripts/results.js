@@ -56,7 +56,7 @@ $(document).ready(function() {
       method: "GET",
       url: "/api/users" + path
     }).done(function(responses) {
-      if (responses.length > 0) {
+      // if (responses.length > 0) {
         const total = responses.length;
         const $results = $(".results");
         const $list = $('<ul>').addClass("unstyled").text("Votes: " + total).appendTo($results);
@@ -65,7 +65,7 @@ $(document).ready(function() {
           let email = responses[i].email;
           $('<li>').text(email).appendTo($list);
         }
-      }
+      // }
     });
   }
 

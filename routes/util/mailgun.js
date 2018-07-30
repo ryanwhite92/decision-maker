@@ -8,12 +8,12 @@ module.exports = {
   sendEmail: function(data) {
     const url = `http://localhost:8080/poll/${data.url}`
     const content = fs.readFileSync(__dirname + "/email.html", "utf-8");
-    const content2 = fs.readFileSync(__dirname + "/email-end.html", "utf-8");
+    // const content2 = fs.readFileSync(__dirname + "/email-end.html", "utf-8");
     const mailgunSetup = {
       from: 'admin@dside.com',
       to: data.email,
       subject: `dSide - ${data.question}`,
-      html: content + url + content2
+      html: content
     };
 
     mailgun.messages().send(mailgunSetup, (err, body) => {

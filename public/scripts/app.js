@@ -107,6 +107,13 @@ $(document).ready(function() {
       return false;
     }
 
+    // Check if entered email is valid
+    if (!validateEmail($email)) {
+      $('#invalid-poll-email').slideDown();
+      setTimeout(timer, 5000);
+      return false;
+    }
+
     $.ajax({
       method: "GET",
       url: "/api/users" + window.location.pathname

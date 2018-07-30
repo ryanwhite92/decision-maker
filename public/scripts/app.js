@@ -72,7 +72,7 @@ $(document).ready(function() {
     let data = "ranking=" + JSON.stringify(response);
     $.ajax({
       method: "POST",
-      url: "/api/users" + window.location.pathname + "results",
+      url: "/api/users" + window.location.pathname + "/results",
       data: { ranking: response, email: email },
     })
     .done((res) => {
@@ -106,6 +106,14 @@ $(document).ready(function() {
     let rankedOptions = $('#sortable').sortable('toArray');
     rankedOptions = rankedOptions.map(function(option) { return Number(option); });
     let rankedPoints = getPoints(rankedOptions);
+
+    // Check if email field is empty and display error
+    if (!$email) {
+      console.log("Error")
+      $('#no-email').slideDown();
+      setTimeout(timer, 5000);
+      return false;
+    }
 
     $.ajax({
       method: "GET",

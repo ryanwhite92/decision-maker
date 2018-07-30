@@ -59,7 +59,7 @@ $(document).ready(function() {
       if (responses.length > 0) {
         const total = responses.length;
         const $results = $(".results");
-        const $list = $('<ul>').addClass("unstyled").text("Votes: " + total).appendTo($results);
+        const $list = $('<ul>').attr("style", "list-style-type:none").text("Votes: " + total).appendTo($results);
 
         for (let i = 0; i < responses.length; i++) {
           let email = responses[i].email;

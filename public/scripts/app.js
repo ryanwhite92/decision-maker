@@ -152,18 +152,18 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    $(":input#option1.form-control").each(function() {
-      if($('input#option1.form-control').val() === "") {
+    $('[id^=option]').each(function() {
+      if($('[id^=option]').val() === "") {
         $('#missing-option1').slideDown();
         event.preventDefault();
       }
     });
-    $(":input#option2.form-control").each(function() {
-      if($('input#option2.form-control').val() === "") {
-        $('#missing-option2').slideDown();
-        event.preventDefault();
-      }
-    });
+    // $(":input#option2.form-control").each(function() {
+    //   if($('input#option2.form-control').val() === "") {
+    //     $('#missing-option2').slideDown();
+    //     event.preventDefault();
+    //   }
+    // });
     $(":input#emails.form-control").each(function() {
       if($('input#emails.form-control').val() === "") {
         $('#missing-recipients').slideDown();

@@ -144,18 +144,26 @@ $(document).ready(function() {
         event.preventDefault();
       }
     });
-    $(":input[id*='option'].form-control").each(function() {
-      if($(':input[id*="option"].form-control').val() === "") {
+    $(":input#option1.form-control").each(function() {
+      if($('input#option1.form-control').val() === "") {
         $('#missing-option1').slideDown();
         event.preventDefault();
       }
     });
-    // $(":input#option2.form-control").each(function() {
-    //   if($('input#option2.form-control').val() === "") {
-    //     $('#missing-option2').slideDown();
-    //     event.preventDefault();
-    //   }
-    // });
+
+    $(":input#option2.form-control").each(function() {
+      if($('input#option2.form-control').val() === "") {
+        $('#missing-option2').slideDown();
+        event.preventDefault();
+      }
+    });
+    $(":input[id^='option'].form-control").each(function() {
+      if($("input[id^='option'].form-control").val() === "") {
+        // $('#missing-option1').slideDown();
+        console.log('works');
+        event.preventDefault();
+      }
+    });
     $(":input#emails.form-control").each(function() {
       if($('input#emails.form-control').val() === "") {
         $('#missing-recipients').slideDown();

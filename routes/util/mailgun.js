@@ -6,7 +6,7 @@ const fs = require('fs');
 module.exports = {
 
   sendEmail: function(data) {
-    const url = `https://boiling-meadow-35275.herokuapp.com/${data.url}`
+    const url = data.url;
     fs.appendFileSync(__dirname + "/email.html", url);
     fs.appendFileSync(__dirname + "/email.html", __dirname + "/email-end.html");
     const content = fs.readFileSync(__dirname + "/email.html", "utf-8");
